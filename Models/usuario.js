@@ -37,5 +37,6 @@ userSchema.pre('save', function(next) {
     next()
 });
 
+//Acá exportamoosss
 export const usuario = mongoose.model('users',userSchema);
 export default usuario;
