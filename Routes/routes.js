@@ -1,28 +1,32 @@
 import  express from "express";
 import {regusuario, mostrarusuarios, onlyuser, upusuario, delusuario} from '../controllers/usercontroller.js'
 import {regevento, mostrareventos,onlyevento, upevento, delevento} from '../controllers/eventcontroller.js'
-
+import {login} from '../Controllers/logincontroller.js'
+import {requireToken} from '../Midleware/autorizacion.js'
+import {db} from '../mongodb.js'
 
 export const router = express.Router();
-import {db} from '../mongodb.js'
+
 
 //RUTAS PARA USUARIOS👫
 //Registro de usuario
 router.post('/regusuario',regusuario);
 //Información de todos los usuarios
-router.get('/shuser',mostrarusuarios);
+router.get('/shuser',requireToken,mostrarusuarios);
 //Información de un usuario en particular
 router.get('/shuser/:id',onlyuser);
 //Actualizar usuario
 router.put('/shuser/:id', upusuario);
 //Eliminar usuario
 router.delete('/shuser/:id', delusuario)
+//Login
+router.post('/login',login);
 
 //RUTAS PARA EVENTOS🕐
 //Registro de evento
 router.post('/regevento',regevento);
 //Información de todos los eventos
-router.get('/mostrareventos',mostrareventos);
+router.get('/mostrareventos',requireToken,mostrareventos);
 //Información de un evento en particular
 router.get('/mostrareventos/:id',onlyevento);
 //Actualizar evento
