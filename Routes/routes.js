@@ -12,7 +12,7 @@ export const router = express.Router();
 //Registro de usuario
 router.post('/regusuario',regusuario);
 //Información de todos los usuarios
-router.get('/shuser',requireToken,mostrarusuarios);
+router.get('/shuser',mostrarusuarios);
 //Información de un usuario en particular
 router.get('/shuser/:id',onlyuser);
 //Actualizar usuario
@@ -26,7 +26,7 @@ router.post('/login',login);
 //Registro de evento
 router.post('/regevento',regevento);
 //Información de todos los eventos
-router.get('/mostrareventos',requireToken,mostrareventos);
+router.get('/mostrareventos',mostrareventos);
 //Información de un evento en particular
 router.get('/mostrareventos/:id',onlyevento);
 //Actualizar evento
